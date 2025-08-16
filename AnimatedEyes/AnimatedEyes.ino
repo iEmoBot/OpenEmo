@@ -39,11 +39,11 @@
 
 // DMA can be used with RP2040, STM32 and ESP32 processors when the interface
 // is SPI, uncomment the next line:
-//#define USE_DMA
+// #define USE_DMA
 
 // Load TFT driver library
 #include <SPI.h>
-#include <TFT_eSPI.h>
+#include "TFT_eSPI.h"
 TFT_eSPI tft;           // A single instance is used for 1 or 2 displays
 
 // A pixel buffer is used during eye rendering
