@@ -1,8 +1,5 @@
-//
-// Code adapted by Bodmer as an example for TFT_eSPI, this runs on any
-// TFT_eSPI compatible processor so ignore the technical limitations
-// detailed in the original header below. Assorted changes have been
-// made including removal of the display mirror kludge.
+// Code adapted to run with TFT_eSPI compatible processor on ESP32,
+// running on two 240x240 TFT displays.
 
 //--------------------------------------------------------------------------
 // Uncanny eyes for Adafruit 1.5" OLED (product #1431) or 1.44" TFT LCD
@@ -11,7 +8,7 @@
 // boards and WILL NOT work on normal Arduino or other boards!
 //
 // SEE FILE "config.h" FOR MOST CONFIGURATION (graphics, pins, display type,
-// etc.).  Probably won't need to edit THIS file unless you're doing some
+// etc).  Probably won't need to edit THIS file unless you're doing some
 // extremely custom modifications.
 //
 // Adafruit invests time and resources providing this open source code,
@@ -91,7 +88,7 @@ void updateEye (void)
 
 // EYE-RENDERING FUNCTION --------------------------------------------------
 void drawEye( // Renders one eye.  Inputs must be pre-clipped & valid.
-  // Use native 32-bit variables where possible as this is 10% faster!
+  // Use native 32 bit variables where possible as this is 10% faster!
   uint8_t  e,       // Eye array index; 0 or 1 for left/right
   uint32_t iScale,  // Scale factor for iris
   uint32_t  scleraX, // First pixel X offset into sclera image
@@ -111,7 +108,7 @@ void drawEye( // Renders one eye.  Inputs must be pre-clipped & valid.
   // reset on each frame here in case of an SPI glitch.
   digitalWrite(eye[e].tft_cs, LOW);
   tft.startWrite();
-  tft.setAddrWindow(eye[e].xposition, 0, 128, 128);
+  tft.setAddrWindow(eye[e].xposition, 0, 240, 240);
 
   // Now just issue raw 16-bit values for every pixel...
 
@@ -204,7 +201,10 @@ void frame(uint16_t iScale) // Iris scale (0-1023)
 
   if (!(++frames & 255)) { // Every 256 frames...
     float elapsed = (millis() - startTime) / 1000.0;
-    if (elapsed) Serial.println((uint16_t)(frames / elapsed)); // Print FPS
+    if (elapsed) {
+      Serial.print("FPS=");
+      Serial.println((uint16_t)(frames / elapsed));
+    }
   }
 
   if (++eyeIndex >= NUM_EYES) eyeIndex = 0; // Cycle through eyes, 1 per call
@@ -338,8 +338,8 @@ void frame(uint16_t iScale) // Iris scale (0-1023)
   // Process motion, blinking and iris scale into renderable values
 
   // Scale eye X/Y positions (0-1023) to pixel units used by drawEye()
-  eyeX = map(eyeX, 0, 1023, 0, SCLERA_WIDTH  - 128);
-  eyeY = map(eyeY, 0, 1023, 0, SCLERA_HEIGHT - 128);
+  eyeX = map(eyeX, 0, 1023, 0, SCLERA_WIDTH  - 240);
+  eyeY = map(eyeY, 0, 1023, 0, SCLERA_HEIGHT - 240);
 
   // Horizontal position is offset so that eyes are very slightly crossed
   // to appear fixated (converged) at a conversational distance.  Number
@@ -349,7 +349,7 @@ void frame(uint16_t iScale) // Iris scale (0-1023)
     if (eyeIndex == 1) eyeX += 4;
     else eyeX -= 4;
   }
-  if (eyeX > (SCLERA_WIDTH - 128)) eyeX = (SCLERA_WIDTH - 128);
+  if (eyeX > (SCLERA_WIDTH - 240)) eyeX = (SCLERA_WIDTH - 240);
 
   // Eyelids are rendered using a brightness threshold image.  This same
   // map can be used to simplify another problem: making the upper eyelid

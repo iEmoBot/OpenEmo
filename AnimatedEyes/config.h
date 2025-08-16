@@ -1,7 +1,6 @@
-// Pin selections here are based on the original Adafruit Learning System
-// guide for the Teensy 3.x project.  Some of these pin numbers don't even
-// exist on the smaller SAMD M0 & M4 boards, so you may need to make other
-// selections:
+// Pin selections here are based on ESP32
+// Only the default_large eye runs on 240x240 px.
+// For all other eyes resolutions need to be adjusted in eye_functions.
 
 // GRAPHICS SETTINGS (appearance of eye) -----------------------------------
 
@@ -12,7 +11,8 @@
 //#define SYMMETRICAL_EYELID
 
 // Enable ONE of these #includes -- HUGE graphics tables for various eyes:
-#include "data/defaultEye.h"      // Standard human-ish hazel eye -OR-
+//#include "data/defaultEye.h"    // Standard human-ish hazel eye -OR-
+#include "data/default_large.h"   // 240px standard human-ish hazel eye -OR-
 //#include "data/dragonEye.h"     // Slit pupil fiery dragon/demon eye -OR-
 //#include "data/noScleraEye.h"   // Large iris, no sclera -OR-
 //#include "data/goatEye.h"       // Horizontal pupil goat/Krampus eye -OR-
@@ -23,17 +23,16 @@
 //#include "data/naugaEye.h"      // Nauga googly eye (DISABLE TRACKING)
 //#include "data/doeEye.h"        // Cartoon deer eye (DISABLE TRACKING)
 
-// DISPLAY HARDWARE SETTINGS (screen type & connections) -------------------
-#define TFT_COUNT 2        // Number of screens (1 or 2)
+// ESP 32 DISPLAY HARDWARE SETTINGS (screen type & connections)
+// #define TFT_COUNT 2        // Number of screens (1 or 2)
 #define TFT1_CS 9         // TFT 1 chip select pin (set to -1 to use TFT_eSPI setup)
 #define TFT2_CS 7         // TFT 2 chip select pin (set to -1 to use TFT_eSPI setup)
-#define TFT_1_ROT 1        // TFT 1 rotation
-#define TFT_2_ROT 3        // TFT 2 rotation
+#define TFT_1_ROT 2        // TFT 1 rotation // 0 = 0° pins bottom, 2 = 180° pins top
+#define TFT_2_ROT 2        // TFT 2 rotation
 #define EYE_1_XPOSITION  0 // x shift for eye 1 image on display
 #define EYE_2_XPOSITION  0 // x shift for eye 2 image on display
 
-#define DISPLAY_BACKLIGHT  -1 // Pin for backlight control (-1 for none)
-#define BACKLIGHT_MAX    255
+#define DISPLAY_BACKLIGHT  -1 // Pin for backlight control (-1 for none)-------------------------------------------------------------------------
 
 // EYE LIST ----------------------------------------------------------------
 #define NUM_EYES 2 // Number of eyes to display (1 or 2)
@@ -64,7 +63,7 @@
 // JOYSTICK_X_PIN and JOYSTICK_Y_PIN specify analog input pins for manually
 // controlling the eye with an analog joystick.  If set to -1 or if not
 // defined, the eye will move on its own.
-// IRIS_PIN specifies an analog input pin for a photocell to make pupils
+// IRIS_PIN speficies an analog input pin for a photocell to make pupils
 // react to light (or potentiometer for manual control).  If set to -1 or
 // if not defined, the pupils will change on their own.
 // BLINK_PIN specifies an input pin for a button (to ground) that will
