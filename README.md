@@ -9,9 +9,13 @@ OpenEmo is an open-source emotion recognition project, whose core lies in emotio
 * **End-to-end analysis pipeline**: Built-in complete pipeline from data preprocessing to emotion output, supporting direct acquisition of emotion analysis results from raw modal data
 
 ## Sub Projects
-**ESP32S3 displays double eye expressions on dual circular 240x240 1.8-inch GC9A01 SPI displays
-Using ESP32-S3 development board, connect the circular 240x240 1.8-inch GC9A01 SPI display, and use Arduino tft-eSPI library to display double eyes expression:
+**Animated Eyes**
+
+Using ESP32-S3 development board, connect the circular 240x240 1.8-inch GC9A01 SPI display, and use
+Arduino TFT-E SPI library to realize double eye expression display
 ![ESP32-S3 display double eyes expression](docs/images/001.jpg)
+
+How to use([Prepare hardware , download and compile the Animated Eyes source code](docs/animated_eyes.pdf))
 
 
 ## Technical Characteristics
