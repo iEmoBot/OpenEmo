@@ -2,15 +2,20 @@ OpenEmo is an open-source emotion recognition project, whose core lies in emotio
 
 ## Core Features
 
-
 * **Multimodal model-driven recognition capability**: With multimodal emotion models as the core, it supports single-modal or multimodal joint input of video, audio, and text, and improves the robustness of emotion recognition through the model's cross-modal correlation learning
 
 * **Fine-grained emotional dimension coverage**: Not only supports classification of 6 basic emotions such as joy, anger, and sadness, but also can output emotional intensity, 
 
-
 * **End-to-end analysis pipeline**: Built-in complete pipeline from data preprocessing to emotion output, supporting direct acquisition of emotion analysis results from raw modal data
 
+## Sub Projects
+
+
 ## Technical Characteristics
+**ESP32S3 displays double eye expressions on dual circular 240x240 1.8-inch GC9A01 SPI displays
+Using ESP32-S3 development board, connect the circular 240x240 1.8-inch GC9A01 SPI display, and use Arduino tft-eSPI library to display double eyes expression:
+![ESP32-S3 display double eyes expression](docs/images/000.jpg)
+
 
 
 * **Multimodal fusion architecture**: Adopts dual-branch attention mechanism and cross-modal feature alignment technology to solve the heterogeneity problem of different modal data, making the model more tolerant to noisy data
