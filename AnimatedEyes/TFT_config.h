@@ -37,50 +37,8 @@
 // Override defaults
 #define USER_SETUP_LOADED
 
-/***************************************************************************************
-**                         Section 1: Load TFT driver
-***************************************************************************************/
-#if defined (CONFIG_TFT_ILI9341_DRIVER)
-    #define ILI9341_DRIVER
-#elif defined (CONFIG_TFT_ILI9341_2_DRIVER)
-    #define ILI9341_2_DRIVER
-#elif defined (CONFIG_TFT_ST7735_DRIVER)
-    #define ST7735_DRIVER
-#elif defined (CONFIG_TFT_ILI9163_DRIVER)
-    #define ILI9163_DRIVER
-#elif defined (CONFIG_TFT_S6D02A1_DRIVER)
-    #define S6D02A1_DRIVER
-#elif defined (CONFIG_TFT_HX8357D_DRIVER)
-    #define HX8357D_DRIVER
-#elif defined (CONFIG_TFT_ILI9481_DRIVER)
-    #define ILI9481_DRIVER
-#elif defined (CONFIG_TFT_ILI9486_DRIVER)
-    #define ILI9486_DRIVER
-#elif defined (CONFIG_TFT_ILI9488_DRIVER)
-    #define ILI9488_DRIVER
-#elif defined (CONFIG_TFT_ST7789_DRIVER)
-    #define ST7789_DRIVER
-#elif defined (CONFIG_TFT_ST7789_2_DRIVER)
-    #define ST7789_2_DRIVER
-#elif defined (CONFIG_TFT_R61581_DRIVER)
-    #define R61581_DRIVER
-#elif defined (CONFIG_TFT_RM68140_DRIVER)
-    #define RM68140_DRIVER
-#elif defined (CONFIG_TFT_ST7796_DRIVER)
-    #define ST7796_DRIVER
-#elif defined (CONFIG_TFT_SSD1351_DRIVER)
-    #define SSD1351_DRIVER
-#elif defined (CONFIG_TFT_SSD1963_480_DRIVER)
-    #define SSD1963_480_DRIVER
-#elif defined (CONFIG_TFT_SSD1963_800_DRIVER)
-    #define SSD1963_800_DRIVER
-#elif defined (CONFIG_TFT_SSD1963_800ALT_DRIVER)
-    #define SSD1963_800ALT_DRIVER
-#elif defined (CONFIG_TFT_ILI9225_DRIVER)
-    #define ILI9225_DRIVER
-#elif defined (CONFIG_TFT_GC9A01_DRIVER)
+// Load GC9A01 driver
     #define GC9A01_DRIVER
-#endif
 
 #ifdef CONFIG_TFT_RGB_ORDER
     #define TFT_RGB_ORDER TFT_RGB
@@ -102,29 +60,10 @@
     #define TFT_HEIGHT   CONFIG_TFT_HEIGHT
 #endif
 
-#if defined (CONFIG_TFT_ST7735_INITB)
-    #define ST7735_INITB
-#elif defined (CONFIG_TFT_ST7735_GREENTAB)
-    #define ST7735_GREENTAB
-#elif defined (CONFIG_TFT_ST7735_GREENTAB2)
-    #define ST7735_GREENTAB2
-#elif defined (CONFIG_TFT_ST7735_GREENTAB3)
-    #define ST7735_GREENTAB3
-#elif defined (CONFIG_TFT_ST7735_GREENTAB128)
-    #define ST7735_GREENTAB128
-#elif defined (CONFIG_TFT_ST7735_GREENTAB160x80)
-    #define ST7735_GREENTAB160x80
-#elif defined (CONFIG_TFT_ST7735_REDTAB)
-    #define ST7735_REDTAB
-#elif defined (CONFIG_TFT_ST7735_BLACKTAB)
-    #define ST7735_BLACKTAB
-#elif defined (CONFIG_TFT_ST7735_REDTAB160x80)
-    #define ST7735_REDTAB160x80
-#endif
-
-#if defined (CONFIG_TFT_INVERSION_ON)
+// Display inversion
+#ifdef CONFIG_TFT_INVERSION_ON
     #define TFT_INVERSION_ON
-#elif defined (CONFIG_TFT_INVERSION_OFF)
+#else
     #define TFT_INVERSION_OFF
 #endif
 
@@ -168,74 +107,8 @@
 **                         Section 3: Data bus Pin configuration
 ***************************************************************************************/
 
-// 8 BIT PARALLEL BUS
-#ifdef CONFIG_TFT_PARALLEL_8_BIT
-
-    #define TFT_PARALLEL_8_BIT
-
-    #if CONFIG_TFT_D0 == -1
-        #error "Invalid Data 0 pin. Check TFT_eSPI configuration"
-    #else
-        #define TFT_D0      CONFIG_TFT_D0
-    #endif
-
-    #if CONFIG_TFT_D1 == -1
-        #error "Invalid Data 1 pin. Check TFT_eSPI configuration"
-    #else
-        #define TFT_D1      CONFIG_TFT_D1
-    #endif
-
-    #if CONFIG_TFT_D2 == -1
-        #error "Invalid Data 2 pin. Check TFT_eSPI configuration"
-    #else
-        #define TFT_D2      CONFIG_TFT_D2
-    #endif
-
-    #if CONFIG_TFT_D3 == -1
-        #error "Invalid Data 3 pin. Check TFT_eSPI configuration"
-    #else
-        #define TFT_D3      CONFIG_TFT_D3
-    #endif
-
-    #if CONFIG_TFT_D4 == -1
-        #error "Invalid Data 4 pin. Check TFT_eSPI configuration"
-    #else
-        #define TFT_D4      CONFIG_TFT_D4
-    #endif
-
-    #if CONFIG_TFT_D5 == -1
-        #error "Invalid Data 5 pin. Check TFT_eSPI configuration"
-    #else
-        #define TFT_D5      CONFIG_TFT_D5
-    #endif
-
-    #if CONFIG_TFT_D6 == -1
-        #error "Invalid Data 6 pin. Check TFT_eSPI configuration"
-    #else
-        #define TFT_D6      CONFIG_TFT_D6
-    #endif
-
-    #if CONFIG_TFT_D7 == -1
-        #error "Invalid Data 7 pin. Check TFT_eSPI configuration"
-    #else
-        #define TFT_D7      CONFIG_TFT_D7
-    #endif
-    
-    #if CONFIG_TFT_WR == -1
-        #error "Invalid Write strobe pin. Check TFT_eSPI configuration"
-    #else
-        #define TFT_WR      CONFIG_TFT_WR
-    #endif
-
-    #if CONFIG_TFT_RD == -1
-        #error "Invalid Read strobe pin. Check TFT_eSPI configuration"
-    #else
-        #define TFT_RD      CONFIG_TFT_RD
-    #endif
-
-// SPI BUS
-#else
-    #if CONFIG_TFT_HSPI_PORT
+// Use HSPI port if configured
+#ifdef CONFIG_TFT_HSPI_PORT
         #define USE_HSPI_PORT
     #endif
 
@@ -252,7 +125,7 @@
     #if CONFIG_TFT_SCLK == -1
         #error "Invalid Clock pin. Check TFT_eSPI configuration"
     #else
-        #define TFT_SCLK      CONFIG_TFT_SCLK
+    #define TFT_SCLK CONFIG_TFT_SCLK
     #endif
 
     #define SPI_FREQUENCY   CONFIG_TFT_SPI_FREQUENCY
